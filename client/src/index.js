@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Navigation from './components/navigation.jsx';
+
 const appContainer = document.getElementById('app');
 
 class App extends React.Component {
@@ -9,7 +11,13 @@ class App extends React.Component {
   }
 
   render() {
-    return <h1>This is in React123 hot loading yeee</h1>;
+    return (
+      <div>
+        <span>This is in React hot loading yeee</span>
+
+        <Navigation />
+      </div>
+    );
   }
 }
 

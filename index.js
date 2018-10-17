@@ -1,14 +1,18 @@
 const express = require('express');
 const webpack = require('webpack');
-const middleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
-const compiler = webpack(require('./webpack.config'));
+
 const port = 3000;
 
 const app = express();
 
-app.use(middleware(compiler));
-app.use(hotMiddleware(compiler));
+console.log('ENV: ', process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  const middleware = require('webpack-dev-middleware');
+  const hotMiddleware = require('webpack-hot-middleware');
+  const compiler = webpack(require('./webpack.config'));
+  app.use(middleware(compiler));
+  app.use(hotMiddleware(compiler));
+}
 
 app.use(express.static('client/dist'));
 
